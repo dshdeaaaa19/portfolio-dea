@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.navbar-fixed {
+    @apply fixed z-[9999] bg-white bg-opacity-70;
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-line {
+    @apply w-[30px] h-[2px] my-2 block bg-dark;
+}
+
+.hamburger-active > span:nth-child(1) {
+    @apply rotate-45;
+}
+
+.hamburger-active > span:nth-child(2) {
+    @apply scale-0;
+}
+
+.hamburger-active > span:nth-child(3) {
+    @apply origin-bottom-left -rotate-45;
+}
+
+#dark-toggle:checked ~ label div.toggle-circle {
+    @apply translate-x-3;
+}
+
+/* Dark Mode Styles */
+html.dark {
+    @apply bg-dark text-white;
+}
+
+html.dark .navbar-fixed {
+    @apply bg-gray-800 bg-opacity-70;
+}
+
+html.dark .hamburger-line {
+    @apply bg-white;
+}
+section {
+    position: relative; /* Pastikan section memiliki posisi relatif */
+    background: linear-gradient(45deg, #082026, #97dde8, #134d80); /* Background gradien */
+    overflow: hidden; /* Untuk menghindari elemen keluar dari batas */
+  }
+
+  .background-svg {
+    opacity: 0.5; /* Transparansi untuk membaur dengan background */
+  }
+
+  @keyframes gradientBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+ /* Slider Container */
+.slider {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 30px 0;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Setiap List Item */
+  .list {
+    flex: 0 0 auto; /* Tidak fleksibel */
+    width: 280px;
+    height: 350px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .list img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 80%;
+    transition: opacity 0.3s ease;
+  }
+  
+  .content p {
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  .content h2 {
+    font-size: 20px;
+    margin: 5px 0;
+  }
+  
+  .content p, .content h2 {
+    line-height: 1.3;
+  }
+  
+  .list:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .list:hover img {
+    transform: scale(1.1);
+  }
+  
+  .list:hover .content {
+    opacity: 1;
+  }
+  
+  /* Responsif untuk perangkat mobile */
+  @media (max-width: 768px) {
+    .slider {
+      /* Pastikan slider tetap horizontal di perangkat mobile */
+      flex-wrap: nowrap;
+      overflow-x: auto; /* Konten masih bisa discroll secara horizontal */
+      justify-content: flex-start; /* Mengatur posisi item ke kiri */
+    }
+  
+    /* Sesuaikan ukuran item slider agar lebih pas di layar kecil */
+    .list {
+      width: 80%; /* Lebar item slider lebih kecil di layar kecil */
+      height: 250px; /* Menyesuaikan tinggi item */
+    }
+  
+    .content h2 {
+      font-size: 18px;
+    }
+  
+    .content p {
+      font-size: 12px;
+    }
+  }
+  
+  /* Kustomisasi scrollbar */
+  .slider::-webkit-scrollbar {
+    height: 10px;
+  }
+  
+  .slider::-webkit-scrollbar-thumb {
+    background-color: #777;
+    border-radius: 5px;
+  }
+  
+  .slider::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  
